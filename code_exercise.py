@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """RTS Labs Code Exercises
 
+Author: Brandon Simmers
+
 This module serves as a response to the RTS Labs Code Exercise.
 Exercises #1 and #2 are demonstrated in the code, and the response
 to exercise #3 is shown in the docstring at the end.
