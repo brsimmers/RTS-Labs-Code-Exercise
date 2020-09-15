@@ -54,7 +54,7 @@ def compare_int_to_array(num_in, my_array):
 
     Returns:
         above: The amount of integers in the array above the input integer.
-        below: The amount of integers in the array above the input integer.
+        below: The amount of integers in the array below the input integer.
     """
     above, below = (0, 0)
     for num in my_array:
