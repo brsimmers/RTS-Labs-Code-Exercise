@@ -21,7 +21,7 @@ Prompt:
     (please upload your response to a public git repository, such as Github).
 
 
-Example:
+Example (Python 3):
     $ python code_exercise.py
 """
 
@@ -42,6 +42,7 @@ def prompt_user_for_int(prompt):
             valid_input = True
         except ValueError:
             print('Invalid input. Please only input an integer.')
+
     return num_in
 
 def compare_int_to_array(num_in, my_array):
