@@ -46,8 +46,8 @@ def rotate_string(num_in, my_string): # Answer to exercise #2
 	prints result to specifications
 	"""
 	num_rotate = num_in % len(my_string) # string repeats after rotating the length of the string, so get the remaining rotations after repeats
-	first_part = ''.join(my_string[-num_rotate:]) # splits string starting from the right and going left input number of spaces
-	second_part = ''.join(my_string[:-num_rotate]) # splits remaining characters
+	first_part = my_string[-num_rotate:] # splits string starting from the right and going left input number of spaces
+	second_part = my_string[:-num_rotate] # splits remaining characters
 	result = first_part + second_part # adds overlap to beginning of string
 	print(result)
 
