@@ -58,11 +58,11 @@ def compare_int_to_array(num_in, my_array):
     """
     above, below = (0, 0)
     for num in my_array:
-        if num < num_in: # if the rotate amount is greater than the number, increment above
+        if num < num_in:
             below += 1
-        elif num > num_in: # if the rotate amount is less than the number, increment below
+        elif num > num_in:
             above += 1
-        else: # if the input and number are the same, ignore it
+        else:
             continue
 
     return above, below
@@ -79,12 +79,12 @@ def rotate_string(rotate_amount, my_string):
     """
 
     # string repeats after rotating the length of the string,
-    # so get the remaining rotations after repeats
+    # so get the remaining rotations after the repeats
     new_rotate_amount = rotate_amount % len(my_string)
 
     # splits string starting from the right and going left input number of spaces
-    first_part = my_string[-new_rotate_amount:] # splits remaining characters
-    second_part = my_string[:-new_rotate_amount]
+    first_part = my_string[-new_rotate_amount:]
+    second_part = my_string[:-new_rotate_amount] # splits remaining characters
     result = first_part + second_part # adds overlap to beginning of string
 
     return result
