@@ -26,7 +26,7 @@ Example (Python 3):
 """
 
 def prompt_user_for_int(prompt):
-    """Prompts for the question's input and checks if an integer
+    """Prompts for the user's input and checks if an integer
 
     Args:
         prompt: A sentence to prompt the user to input an integer.
