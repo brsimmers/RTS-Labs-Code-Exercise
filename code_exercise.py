@@ -1,66 +1,111 @@
-"""
-#1  Print the number of integers in an array that are above the given input and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6, print “above: 1, below: 4”.
+# -*- coding: utf-8 -*-
+"""RTS Labs Code Exercises
 
-#2  Rotate the characters in a string by a given input and have the overflow appear at the beginning, e.g. “MyString” rotated by 2 is “ngMyStri”.
+This module serves as a response to the RTS Labs Code Exercise.
+Exercises #1 and #2 are demonstrated in the code, and the response
+to exercise #3 is shown in the docstring at the end.
 
-#3  If you could change 1 thing about your favorite framework/language/platform (pick one), what would it be?
+Prompt:
+    #1  Print the number of integers in an array that are above the given input
+    and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6,
+    print “above: 1, below: 4”.
 
-Let us know if you have any questions! If you're good to go, please send us back your exercise at your convenience (please upload your response to a public git repository, such as Github).
+    #2  Rotate the characters in a string by a given input and have the overflow
+    appear at the beginning, e.g. “MyString” rotated by 2 is “ngMyStri”.
+
+    #3  If you could change 1 thing about your favorite framework/language/platform
+    (pick one), what would it be?
+
+    Let us know if you have any questions!
+    If you're good to go, please send us back your exercise at your convenience
+    (please upload your response to a public git repository, such as Github).
+
+
+Example:
+    $ python code_exercise.py
 """
 
 def prompt_user_for_int(prompt):
-	# Prompts for the question's input and checks if an integer
-	# accepts string prompt
-	# returns integer input
-	while True:
-		num_in = input(prompt)
-		try:
-			num_in = int(num_in)
-			break
-		except ValueError:
-			print('Invalid input. Please only input an integer.')
-		except:
-			print('An unexpected error occured of type ' + type(err) + '... exiting program.')
-	return int(num_in)
+    """Prompts for the question's input and checks if an integer
 
-def count_array_range(num_in, array): # Answer to exercise #1
-	"""
-	counts numbers in list above and below the input integer
-	accepts input number and array
-	prints result to specifications
-	"""
-	above, below = (0, 0)
-	for num in array:
-		if num < num_in: # if the input is greater than the number, increment above
-			below += 1
-		elif num > num_in: # if the input is less than the number, increment below
-			above += 1
-		else: # if the input and number are the same, ignore it
-			pass
-	print('above: %s, below: %s' % (above, below))
+    Args:
+        prompt: A sentence to prompt the user to input an integer.
 
-def rotate_string(num_in, my_string): # Answer to exercise #2
-	""" 
-	rotates a given string by the input amount
-	accepts input number and string to rotate
-	prints result to specifications
-	"""
-	num_rotate = num_in % len(my_string) # string repeats after rotating the length of the string, so get the remaining rotations after repeats
-	first_part = my_string[-num_rotate:] # splits string starting from the right and going left input number of spaces
-	second_part = my_string[:-num_rotate] # splits remaining characters
-	result = first_part + second_part # adds overlap to beginning of string
-	print(result)
+    Returns:
+        num_in: The entered integer.
+    """
+    valid_input = False
+    while not valid_input:
+        num_in = input(prompt)
+        try:
+            num_in = int(num_in)
+            valid_input = True
+        except ValueError:
+            print('Invalid input. Please only input an integer.')
+    return num_in
 
+def compare_int_to_array(num_in, my_array):
+    """ Counts the amount of numbers in the array above and below the input integer
+
+    Args:
+        num_in: A given integer.
+        my_array: An array of integers.
+
+    Returns:
+        above: The amount of integers in the array above the input integer.
+        below: The amount of integers in the array above the input integer.
+    """
+    above, below = (0, 0)
+    for num in my_array:
+        if num < num_in: # if the rotate amount is greater than the number, increment above
+            below += 1
+        elif num > num_in: # if the rotate amount is less than the number, increment below
+            above += 1
+        else: # if the input and number are the same, ignore it
+            continue
+
+    return above, below
+
+def rotate_string(rotate_amount, my_string):
+    """Rotates a given string by the input amount
+
+    Args:
+        rotate_amount: A given integer
+        my_string: A string
+
+    Returns:
+        result: The rotated string.
+    """
+
+    # string repeats after rotating the length of the string,
+    # so get the remaining rotations after repeats
+    new_rotate_amount = rotate_amount % len(my_string)
+
+    # splits string starting from the right and going left input number of spaces
+    first_part = my_string[-new_rotate_amount:] # splits remaining characters
+    second_part = my_string[:-new_rotate_amount]
+    result = first_part + second_part # adds overlap to beginning of string
+
+    return result
 
 if __name__ == '__main__':
-	## Run through each exercise, prompting for input and printing responses ##
-	array = [1,5,2,1,10]
-	my_string = "MyString"
+    MY_ARRAY = [1,5,2,1,10]
+    MY_STRING = "MyString"
 
-	# First exercise
-	num_in = prompt_user_for_int('Please input an integer to compare to the array: ')
-	count_array_range(num_in, array)
-	
-	# Second Exercise
-	num_in = prompt_user_for_int('Please input an integer amount to rotate "MyString": ')
-	rotate_string(num_in, my_string)
+    # First exercise
+    input_number = prompt_user_for_int('Please input an integer to compare to the array: ')
+    num_above, num_below = compare_int_to_array(input_number, MY_ARRAY)
+    print(f'above: {num_above}, below: {num_below}')
+
+    # Second Exercise
+    input_number = prompt_user_for_int('Please input an integer amount to rotate MyString: ')
+    new_string = rotate_string(input_number, MY_STRING)
+    print(new_string)
+
+    """ Third Question Answer
+    In the past, when using Django, I've run into issues using their Sites model from
+    django.contrib.sites.models. After a successful database migration the first time,
+    I have to manually remove sites from future migration files so it will stop throwing
+    a ValueError saying it is unable to serialize the website. I'd like to change that to
+    check if the Site has previously been successfully serialized to curcumvent this issue.
+    """
